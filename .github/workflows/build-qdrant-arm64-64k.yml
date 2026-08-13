@@ -1,0 +1,189 @@
+name: Build Qdrant ARM64 64K offline image
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/build-qdrant-arm64-64k.yml"
+      - "runtime.Dockerfile"
+
+permissions:
+  contents: read
+
+env:
+  QDRANT_VERSION: "1.18.3"
+  IMAGE_NAME: "local/rag-qdrant"
+  IMAGE_TAG: "v1.18.3-arm64-64k"
+  CARGO_TERM_COLOR: always
+  CARGO_BUILD_JOBS: "2"
+  JEMALLOC_SYS_WITH_LG_PAGE: "16"
+
+jobs:
+  build:
+    name: Native ARM64 build with 64K jemalloc pages
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout this builder repository
+        uses: actions/checkout@v4
+
+      - name: Show native runner information
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          uname -a
+          uname -m
+          getconf PAGESIZE
+          docker version
+          df -h
+          test "$(uname -m)" = "aarch64"
+
+      - name: Checkout Qdrant v1.18.3 source
+        uses: actions/checkout@v4
+        with:
+          repository: qdrant/qdrant
+          ref: v1.18.3
+          fetch-depth: 1
+          path: qdrant-src
+
+      - name: Install native build dependencies
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            clang \
+            cmake \
+            jq \
+            libunwind-dev \
+            lld \
+            pkg-config \
+            protobuf-compiler
+
+      - name: Install the Qdrant-pinned Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: "1.94.0"
+
+      - name: Build Qdrant with 64K allocator pages
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          cd qdrant-src
+          echo "JEMALLOC_SYS_WITH_LG_PAGE=$JEMALLOC_SYS_WITH_LG_PAGE"
+          test "$JEMALLOC_SYS_WITH_LG_PAGE" = "16"
+          cargo build --locked --release --features=stacktrace --bin qdrant
+          test -x target/release/qdrant
+          file target/release/qdrant
+          target/release/qdrant --version
+
+      - name: Build the offline runtime image
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          cp qdrant-src/target/release/qdrant ./qdrant-arm64-64k
+          chmod 0755 ./qdrant-arm64-64k
+          docker build \
+            --file runtime.Dockerfile \
+            --build-arg QDRANT_VERSION="$QDRANT_VERSION" \
+            --label "com.cubex.qdrant.version=$QDRANT_VERSION" \
+            --label "com.cubex.qdrant.architecture=arm64" \
+            --label "com.cubex.qdrant.jemalloc-lg-page=16" \
+            --label "com.cubex.qdrant.max-system-page-size=65536" \
+            --tag "$IMAGE_NAME:$IMAGE_TAG" \
+            .
+
+      - name: Verify architecture, labels and Qdrant API
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          test "$(docker image inspect "$IMAGE_NAME:$IMAGE_TAG" --format '{{.Architecture}}')" = "arm64"
+          test "$(docker image inspect "$IMAGE_NAME:$IMAGE_TAG" --format '{{index .Config.Labels "com.cubex.qdrant.jemalloc-lg-page"}}')" = "16"
+          test "$(docker image inspect "$IMAGE_NAME:$IMAGE_TAG" --format '{{index .Config.Labels "com.cubex.qdrant.max-system-page-size"}}')" = "65536"
+
+          docker run -d \
+            --name qdrant-64k-ci-check \
+            -p 127.0.0.1:16333:6333 \
+            "$IMAGE_NAME:$IMAGE_TAG"
+
+          cleanup() {
+            docker logs qdrant-64k-ci-check || true
+            docker rm -f qdrant-64k-ci-check >/dev/null 2>&1 || true
+          }
+          trap cleanup EXIT
+
+          ready=0
+          for attempt in $(seq 1 60); do
+            if curl -fsS --max-time 3 http://127.0.0.1:16333/collections >/dev/null; then
+              ready=1
+              break
+            fi
+            if test "$(docker inspect -f '{{.State.Running}}' qdrant-64k-ci-check)" != "true"; then
+              echo "Qdrant exited during CI verification" >&2
+              exit 1
+            fi
+            sleep 2
+          done
+          test "$ready" = "1"
+
+          curl -fsS -X PUT \
+            http://127.0.0.1:16333/collections/__ci_smoke_64k \
+            -H 'Content-Type: application/json' \
+            -d '{"vectors":{"size":4,"distance":"Cosine"}}'
+
+          curl -fsS -X PUT \
+            'http://127.0.0.1:16333/collections/__ci_smoke_64k/points?wait=true' \
+            -H 'Content-Type: application/json' \
+            -d '{"points":[{"id":1,"vector":[0.1,0.2,0.3,0.4],"payload":{"check":"64k"}}]}'
+
+          curl -fsS \
+            http://127.0.0.1:16333/collections/__ci_smoke_64k/points/1
+
+          curl -fsS -X DELETE \
+            http://127.0.0.1:16333/collections/__ci_smoke_64k
+
+          if docker logs qdrant-64k-ci-check 2>&1 | grep -q 'Unsupported system page size'; then
+            echo "jemalloc page-size failure detected" >&2
+            exit 1
+          fi
+
+      - name: Export image and build manifest
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          mkdir -p output
+          docker save \
+            --output output/qdrant-v1.18.3-arm64-64k.tar \
+            "$IMAGE_NAME:$IMAGE_TAG"
+
+          sha256sum output/qdrant-v1.18.3-arm64-64k.tar \
+            > output/SHA256SUMS.txt
+
+          cat > output/BUILD-INFO.txt <<EOF
+          Qdrant version: $QDRANT_VERSION
+          Docker image: $IMAGE_NAME:$IMAGE_TAG
+          Architecture: arm64
+          jemalloc lg-page: 16
+          Maximum supported system page size: 65536 bytes
+          Source: https://github.com/qdrant/qdrant/tree/v$QDRANT_VERSION
+          Git commit: $(git -C qdrant-src rev-parse HEAD)
+          Workflow run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+          Built at UTC: $(date -u '+%Y-%m-%dT%H:%M:%SZ')
+          EOF
+
+          docker image inspect "$IMAGE_NAME:$IMAGE_TAG" \
+            > output/docker-image-inspect.json
+
+          ls -lh output
+
+      - name: Upload verified offline image
+        uses: actions/upload-artifact@v4
+        with:
+          name: qdrant-v1.18.3-arm64-64k-offline
+          path: output/*
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 1

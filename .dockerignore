@@ -1,0 +1,9 @@
+.git
+.github
+qdrant-src
+output
+server
+README.md
+*.zip
+*.tar
+
