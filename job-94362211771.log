@@ -1,0 +1,481 @@
+﻿2026-08-13T06:16:54.1634497Z Current runner version: '2.336.0'
+2026-08-13T06:16:54.1665682Z ##[group]Runner Image Provisioner
+2026-08-13T06:16:54.1666639Z Hosted Compute Agent
+2026-08-13T06:16:54.1667368Z Version: 20260707.563
+2026-08-13T06:16:54.1668016Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+2026-08-13T06:16:54.1668742Z Build Date: 2026-07-07T19:33:50Z
+2026-08-13T06:16:54.1669506Z Worker ID: {01171b9e-0f7f-41a0-830a-7889c0392495}
+2026-08-13T06:16:54.1670200Z Azure Region: westus2
+2026-08-13T06:16:54.1670809Z ##[endgroup]
+2026-08-13T06:16:54.1673441Z ##[group]Operating System
+2026-08-13T06:16:54.1674114Z Ubuntu
+2026-08-13T06:16:54.1674798Z 24.04.4
+2026-08-13T06:16:54.1675293Z LTS
+2026-08-13T06:16:54.1675768Z ##[endgroup]
+2026-08-13T06:16:54.1676446Z ##[group]Runner Image
+2026-08-13T06:16:54.1677058Z Image: ubuntu-24.04-arm
+2026-08-13T06:16:54.1677754Z Version: 20260719.67.1
+2026-08-13T06:16:54.1679097Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24-arm64/20260719.67/images/ubuntu/Ubuntu2404-Arm64-Readme.md
+2026-08-13T06:16:54.1680663Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24-arm64%2F20260719.67
+2026-08-13T06:16:54.1681583Z ##[endgroup]
+2026-08-13T06:16:54.1683714Z ##[group]GITHUB_TOKEN Permissions
+2026-08-13T06:16:54.1686910Z Contents: read
+2026-08-13T06:16:54.1687504Z Metadata: read
+2026-08-13T06:16:54.1688272Z ##[endgroup]
+2026-08-13T06:16:54.1691235Z Secret source: Actions
+2026-08-13T06:16:54.1693168Z Prepare workflow directory
+2026-08-13T06:16:54.2145078Z Prepare all required actions
+2026-08-13T06:16:54.2196140Z Getting action download info
+2026-08-13T06:16:54.5761472Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-08-13T06:16:54.8741956Z Download action repository 'dtolnay/rust-toolchain@nightly' (SHA:7c8d7d138f5c09cef361f8214cf96882cd029cdb)
+2026-08-13T06:16:55.0507119Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-08-13T06:16:55.3587818Z Complete job name: Native ARM64 build with 64K jemalloc pages
+2026-08-13T06:16:55.4445369Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-13T06:16:55.4455847Z ##[group]Run actions/checkout@v4
+2026-08-13T06:16:55.4456999Z with:
+2026-08-13T06:16:55.4457545Z   repository: whiletruetrue-creator/test
+2026-08-13T06:16:55.4461255Z   token: ***
+2026-08-13T06:16:55.4461815Z   ssh-strict: true
+2026-08-13T06:16:55.4462788Z   ssh-user: git
+2026-08-13T06:16:55.4463480Z   persist-credentials: true
+2026-08-13T06:16:55.4464050Z   clean: true
+2026-08-13T06:16:55.4464661Z   sparse-checkout-cone-mode: true
+2026-08-13T06:16:55.4465304Z   fetch-depth: 1
+2026-08-13T06:16:55.4465888Z   fetch-tags: false
+2026-08-13T06:16:55.4466516Z   show-progress: true
+2026-08-13T06:16:55.4467094Z   lfs: false
+2026-08-13T06:16:55.4467760Z   submodules: false
+2026-08-13T06:16:55.4468358Z   set-safe-directory: true
+2026-08-13T06:16:55.4468969Z   allow-unsafe-pr-checkout: false
+2026-08-13T06:16:55.4470697Z env:
+2026-08-13T06:16:55.4471269Z   QDRANT_VERSION: 1.18.3
+2026-08-13T06:16:55.4472022Z   IMAGE_NAME: local/rag-qdrant
+2026-08-13T06:16:55.4472957Z   IMAGE_TAG: v1.18.3-arm64-64k
+2026-08-13T06:16:55.4473574Z   CARGO_TERM_COLOR: always
+2026-08-13T06:16:55.4474214Z   CARGO_BUILD_JOBS: 2
+2026-08-13T06:16:55.4474768Z   JEMALLOC_SYS_WITH_LG_PAGE: 16
+2026-08-13T06:16:55.4475347Z   PROTOC_INCLUDE: /usr/include
+2026-08-13T06:16:55.4475965Z ##[endgroup]
+2026-08-13T06:16:55.5340889Z Syncing repository: whiletruetrue-creator/test
+2026-08-13T06:16:55.5343664Z ##[group]Getting Git version info
+2026-08-13T06:16:55.5344531Z Working directory is '/home/runner/work/test/test'
+2026-08-13T06:16:55.5345816Z [command]/usr/bin/git version
+2026-08-13T06:16:55.5449427Z git version 2.54.0
+2026-08-13T06:16:55.5475675Z ##[endgroup]
+2026-08-13T06:16:55.5491973Z Temporarily overriding HOME='/home/runner/work/_temp/d6c2f9a4-5eca-4479-b857-55e62d8a3d40' before making global git config changes
+2026-08-13T06:16:55.5494131Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-13T06:16:55.5497877Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/test/test
+2026-08-13T06:16:55.5532019Z Deleting the contents of '/home/runner/work/test/test'
+2026-08-13T06:16:55.5537001Z ##[group]Initializing the repository
+2026-08-13T06:16:55.5542575Z [command]/usr/bin/git init /home/runner/work/test/test
+2026-08-13T06:16:55.5630340Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-08-13T06:16:55.5634182Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-08-13T06:16:55.5635858Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-08-13T06:16:55.5637091Z hint: call:
+2026-08-13T06:16:55.5638392Z hint:
+2026-08-13T06:16:55.5639189Z hint: 	git config --global init.defaultBranch <name>
+2026-08-13T06:16:55.5640019Z hint:
+2026-08-13T06:16:55.5640806Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-08-13T06:16:55.5641786Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-08-13T06:16:55.5642926Z hint:
+2026-08-13T06:16:55.5643460Z hint: 	git branch -m <name>
+2026-08-13T06:16:55.5644142Z hint:
+2026-08-13T06:16:55.5645018Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-08-13T06:16:55.5646076Z Initialized empty Git repository in /home/runner/work/test/test/.git/
+2026-08-13T06:16:55.5648175Z [command]/usr/bin/git remote add origin https://github.com/whiletruetrue-creator/test
+2026-08-13T06:16:55.5687488Z ##[endgroup]
+2026-08-13T06:16:55.5688672Z ##[group]Disabling automatic garbage collection
+2026-08-13T06:16:55.5691604Z [command]/usr/bin/git config --local gc.auto 0
+2026-08-13T06:16:55.5720406Z ##[endgroup]
+2026-08-13T06:16:55.5722440Z ##[group]Setting up auth
+2026-08-13T06:16:55.5725802Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-13T06:16:55.5756017Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-13T06:16:55.6068689Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-13T06:16:55.6098514Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-13T06:16:55.6289204Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-13T06:16:55.6320382Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-13T06:16:55.6513445Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-08-13T06:16:55.6546735Z ##[endgroup]
+2026-08-13T06:16:55.6547837Z ##[group]Fetching the repository
+2026-08-13T06:16:55.6555528Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +eee595471021ed3997294c2eebddfa79918c98dd:refs/remotes/origin/main
+2026-08-13T06:16:55.9292085Z From https://github.com/whiletruetrue-creator/test
+2026-08-13T06:16:55.9294564Z  * [new ref]         eee595471021ed3997294c2eebddfa79918c98dd -> origin/main
+2026-08-13T06:16:55.9315771Z ##[endgroup]
+2026-08-13T06:16:55.9317119Z ##[group]Determining the checkout info
+2026-08-13T06:16:55.9319212Z ##[endgroup]
+2026-08-13T06:16:55.9321354Z [command]/usr/bin/git sparse-checkout disable
+2026-08-13T06:16:55.9355611Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-08-13T06:16:55.9381872Z ##[group]Checking out the ref
+2026-08-13T06:16:55.9385647Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-08-13T06:16:55.9423296Z Switched to a new branch 'main'
+2026-08-13T06:16:55.9425190Z branch 'main' set up to track 'origin/main'.
+2026-08-13T06:16:55.9431656Z ##[endgroup]
+2026-08-13T06:16:55.9463785Z [command]/usr/bin/git log -1 --format=%H
+2026-08-13T06:16:55.9486046Z eee595471021ed3997294c2eebddfa79918c98dd
+2026-08-13T06:16:55.9731584Z ##[group]Run set -Eeuo pipefail
+2026-08-13T06:16:55.9733368Z [36;1mset -Eeuo pipefail[0m
+2026-08-13T06:16:55.9734466Z [36;1muname -a[0m
+2026-08-13T06:16:55.9735264Z [36;1muname -m[0m
+2026-08-13T06:16:55.9736077Z [36;1mgetconf PAGESIZE[0m
+2026-08-13T06:16:55.9736932Z [36;1mdocker version[0m
+2026-08-13T06:16:55.9737732Z [36;1mdf -h[0m
+2026-08-13T06:16:55.9738553Z [36;1mtest "$(uname -m)" = "aarch64"[0m
+2026-08-13T06:16:55.9781790Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-13T06:16:55.9783545Z env:
+2026-08-13T06:16:55.9784339Z   QDRANT_VERSION: 1.18.3
+2026-08-13T06:16:55.9785292Z   IMAGE_NAME: local/rag-qdrant
+2026-08-13T06:16:55.9786274Z   IMAGE_TAG: v1.18.3-arm64-64k
+2026-08-13T06:16:55.9787169Z   CARGO_TERM_COLOR: always
+2026-08-13T06:16:55.9788121Z   CARGO_BUILD_JOBS: 2
+2026-08-13T06:16:55.9788956Z   JEMALLOC_SYS_WITH_LG_PAGE: 16
+2026-08-13T06:16:55.9789933Z   PROTOC_INCLUDE: /usr/include
+2026-08-13T06:16:55.9790814Z ##[endgroup]
+2026-08-13T06:16:55.9892655Z Linux runnervma9114 6.17.0-1020-azure #20~24.04.1-Ubuntu SMP Fri Jun 19 20:26:28 UTC 2026 aarch64 aarch64 aarch64 GNU/Linux
+2026-08-13T06:16:55.9898939Z aarch64
+2026-08-13T06:16:55.9913732Z 4096
+2026-08-13T06:16:57.0409540Z Client: Docker Engine - Community
+2026-08-13T06:16:57.0410387Z  Version:           28.0.4
+2026-08-13T06:16:57.0410860Z  API version:       1.48
+2026-08-13T06:16:57.0411689Z  Go version:        go1.23.7
+2026-08-13T06:16:57.0412749Z  Git commit:        b8034c0
+2026-08-13T06:16:57.0413400Z  Built:             Tue Mar 25 15:07:55 2025
+2026-08-13T06:16:57.0414001Z  OS/Arch:           linux/arm64
+2026-08-13T06:16:57.0414524Z  Context:           default
+2026-08-13T06:16:57.0414829Z 
+2026-08-13T06:16:57.0415045Z Server: Docker Engine - Community
+2026-08-13T06:16:57.0415561Z  Engine:
+2026-08-13T06:16:57.0416031Z   Version:          28.0.4
+2026-08-13T06:16:57.0416518Z   API version:      1.48 (minimum version 1.24)
+2026-08-13T06:16:57.0417024Z   Go version:       go1.23.7
+2026-08-13T06:16:57.0417636Z   Git commit:       6430e49
+2026-08-13T06:16:57.0418187Z   Built:            Tue Mar 25 15:07:55 2025
+2026-08-13T06:16:57.0418758Z   OS/Arch:          linux/arm64
+2026-08-13T06:16:57.0419272Z   Experimental:     false
+2026-08-13T06:16:57.0419724Z  containerd:
+2026-08-13T06:16:57.0420211Z   Version:          v2.2.6
+2026-08-13T06:16:57.0420737Z   GitCommit:        11ce9d5f3c68c941867e82890e93e815c1304f1b
+2026-08-13T06:16:57.0421411Z  runc:
+2026-08-13T06:16:57.0421861Z   Version:          1.3.6
+2026-08-13T06:16:57.0422557Z   GitCommit:        v1.3.6-0-g491b69ba
+2026-08-13T06:16:57.0423184Z  docker-init:
+2026-08-13T06:16:57.0423670Z   Version:          0.19.0
+2026-08-13T06:16:57.0424149Z   GitCommit:        de40ad0
+2026-08-13T06:16:57.0537193Z Filesystem      Size  Used Avail Use% Mounted on
+2026-08-13T06:16:57.0537840Z /dev/root       145G   36G  109G  25% /
+2026-08-13T06:16:57.0538518Z tmpfs           7.8G  100K  7.8G   1% /dev/shm
+2026-08-13T06:16:57.0539125Z tmpfs           3.2G 1008K  3.2G   1% /run
+2026-08-13T06:16:57.0539737Z tmpfs           5.0M     0  5.0M   0% /run/lock
+2026-08-13T06:16:57.0540405Z efivarfs        128M   13K  128M   1% /sys/firmware/efi/efivars
+2026-08-13T06:16:57.0541013Z /dev/sda16      891M   63M  766M   8% /boot
+2026-08-13T06:16:57.0541558Z /dev/sda15       98M  6.4M   92M   7% /boot/efi
+2026-08-13T06:16:57.0542387Z tmpfs           1.6G   16K  1.6G   1% /run/user/1001
+2026-08-13T06:16:57.0688870Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-13T06:16:57.0691122Z ##[group]Run actions/checkout@v4
+2026-08-13T06:16:57.0691572Z with:
+2026-08-13T06:16:57.0692060Z   repository: qdrant/qdrant
+2026-08-13T06:16:57.0692723Z   ref: v1.18.3
+2026-08-13T06:16:57.0693126Z   fetch-depth: 1
+2026-08-13T06:16:57.0693593Z   path: qdrant-src
+2026-08-13T06:16:57.0696264Z   token: ***
+2026-08-13T06:16:57.0696736Z   ssh-strict: true
+2026-08-13T06:16:57.0697134Z   ssh-user: git
+2026-08-13T06:16:57.0697549Z   persist-credentials: true
+2026-08-13T06:16:57.0697999Z   clean: true
+2026-08-13T06:16:57.0698397Z   sparse-checkout-cone-mode: true
+2026-08-13T06:16:57.0698823Z   fetch-tags: false
+2026-08-13T06:16:57.0699413Z   show-progress: true
+2026-08-13T06:16:57.0699856Z   lfs: false
+2026-08-13T06:16:57.0700308Z   submodules: false
+2026-08-13T06:16:57.0700704Z   set-safe-directory: true
+2026-08-13T06:16:57.0701189Z   allow-unsafe-pr-checkout: false
+2026-08-13T06:16:57.0701635Z env:
+2026-08-13T06:16:57.0702024Z   QDRANT_VERSION: 1.18.3
+2026-08-13T06:16:57.0702837Z   IMAGE_NAME: local/rag-qdrant
+2026-08-13T06:16:57.0703294Z   IMAGE_TAG: v1.18.3-arm64-64k
+2026-08-13T06:16:57.0703720Z   CARGO_TERM_COLOR: always
+2026-08-13T06:16:57.0704206Z   CARGO_BUILD_JOBS: 2
+2026-08-13T06:16:57.0704628Z   JEMALLOC_SYS_WITH_LG_PAGE: 16
+2026-08-13T06:16:57.0705114Z   PROTOC_INCLUDE: /usr/include
+2026-08-13T06:16:57.0705554Z ##[endgroup]
+2026-08-13T06:16:57.1413330Z Syncing repository: qdrant/qdrant
+2026-08-13T06:16:57.1417617Z ##[group]Getting Git version info
+2026-08-13T06:16:57.1418708Z Working directory is '/home/runner/work/test/test/qdrant-src'
+2026-08-13T06:16:57.1449424Z [command]/usr/bin/git version
+2026-08-13T06:16:57.1482923Z git version 2.54.0
+2026-08-13T06:16:57.1500922Z ##[endgroup]
+2026-08-13T06:16:57.1515366Z Temporarily overriding HOME='/home/runner/work/_temp/15f66350-7d76-43f7-af14-e04c6d8ff798' before making global git config changes
+2026-08-13T06:16:57.1516552Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-13T06:16:57.1519325Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/test/test/qdrant-src
+2026-08-13T06:16:57.1555281Z ##[group]Initializing the repository
+2026-08-13T06:16:57.1560996Z [command]/usr/bin/git init /home/runner/work/test/test/qdrant-src
+2026-08-13T06:16:57.1594460Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-08-13T06:16:57.1603380Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-08-13T06:16:57.1604947Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-08-13T06:16:57.1605815Z hint: call:
+2026-08-13T06:16:57.1606228Z hint:
+2026-08-13T06:16:57.1606877Z hint: 	git config --global init.defaultBranch <name>
+2026-08-13T06:16:57.1607549Z hint:
+2026-08-13T06:16:57.1608077Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-08-13T06:16:57.1608865Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-08-13T06:16:57.1609486Z hint:
+2026-08-13T06:16:57.1609884Z hint: 	git branch -m <name>
+2026-08-13T06:16:57.1610391Z hint:
+2026-08-13T06:16:57.1610989Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-08-13T06:16:57.1611794Z Initialized empty Git repository in /home/runner/work/test/test/qdrant-src/.git/
+2026-08-13T06:16:57.1615829Z [command]/usr/bin/git remote add origin https://github.com/qdrant/qdrant
+2026-08-13T06:16:57.1643480Z ##[endgroup]
+2026-08-13T06:16:57.1644410Z ##[group]Disabling automatic garbage collection
+2026-08-13T06:16:57.1645039Z [command]/usr/bin/git config --local gc.auto 0
+2026-08-13T06:16:57.1666260Z ##[endgroup]
+2026-08-13T06:16:57.1667409Z ##[group]Setting up auth
+2026-08-13T06:16:57.1668092Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-13T06:16:57.1692304Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-13T06:16:57.1879004Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-13T06:16:57.1910509Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-13T06:16:57.2104960Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-13T06:16:57.2138388Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-13T06:16:57.2332678Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-08-13T06:16:57.2367688Z ##[endgroup]
+2026-08-13T06:16:57.2368885Z ##[group]Fetching the repository
+2026-08-13T06:16:57.2376032Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/v1.18.3*:refs/remotes/origin/v1.18.3* +refs/tags/v1.18.3*:refs/tags/v1.18.3*
+2026-08-13T06:16:58.5375047Z From https://github.com/qdrant/qdrant
+2026-08-13T06:16:58.5375927Z  * [new tag]         v1.18.3    -> v1.18.3
+2026-08-13T06:16:58.5404966Z ##[endgroup]
+2026-08-13T06:16:58.5405649Z ##[group]Determining the checkout info
+2026-08-13T06:16:58.5406265Z [command]/usr/bin/git branch --list --remote origin/v1.18.3
+2026-08-13T06:16:58.5430793Z [command]/usr/bin/git tag --list v1.18.3
+2026-08-13T06:16:58.5495256Z v1.18.3
+2026-08-13T06:16:58.5498207Z ##[endgroup]
+2026-08-13T06:16:58.5523476Z [command]/usr/bin/git sparse-checkout disable
+2026-08-13T06:16:58.5544389Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-08-13T06:16:58.5569472Z ##[group]Checking out the ref
+2026-08-13T06:16:58.5572873Z [command]/usr/bin/git checkout --progress --force refs/tags/v1.18.3
+2026-08-13T06:16:59.1748812Z Note: switching to 'refs/tags/v1.18.3'.
+2026-08-13T06:16:59.1749210Z 
+2026-08-13T06:16:59.1749528Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-08-13T06:16:59.1750104Z changes and commit them, and you can discard any commits you make in this
+2026-08-13T06:16:59.1750728Z state without impacting any branches by switching back to a branch.
+2026-08-13T06:16:59.1751044Z 
+2026-08-13T06:16:59.1751229Z If you want to create a new branch to retain commits you create, you may
+2026-08-13T06:16:59.1751763Z do so (now or later) by using -c with the switch command. Example:
+2026-08-13T06:16:59.1752048Z 
+2026-08-13T06:16:59.1752386Z   git switch -c <new-branch-name>
+2026-08-13T06:16:59.1752607Z 
+2026-08-13T06:16:59.1752816Z Or undo this operation with:
+2026-08-13T06:16:59.1753071Z 
+2026-08-13T06:16:59.1753215Z   git switch -
+2026-08-13T06:16:59.1753337Z 
+2026-08-13T06:16:59.1753573Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-08-13T06:16:59.1753897Z 
+2026-08-13T06:16:59.1754146Z HEAD is now at db8fa43 Bump version to 1.18.3 (#9885)
+2026-08-13T06:16:59.2021677Z ##[endgroup]
+2026-08-13T06:16:59.2055937Z [command]/usr/bin/git log -1 --format=%H
+2026-08-13T06:16:59.2079353Z db8fa43fcb6aedec1e739487e17a99731b74590a
+2026-08-13T06:16:59.2195511Z ##[group]Run set -Eeuo pipefail
+2026-08-13T06:16:59.2196046Z [36;1mset -Eeuo pipefail[0m
+2026-08-13T06:16:59.2196310Z [36;1msudo apt-get update[0m
+2026-08-13T06:16:59.2196704Z [36;1msudo apt-get install -y --no-install-recommends \[0m
+2026-08-13T06:16:59.2197127Z [36;1m  build-essential \[0m
+2026-08-13T06:16:59.2197365Z [36;1m  clang \[0m
+2026-08-13T06:16:59.2197640Z [36;1m  cmake \[0m
+2026-08-13T06:16:59.2197847Z [36;1m  jq \[0m
+2026-08-13T06:16:59.2198091Z [36;1m  libunwind-dev \[0m
+2026-08-13T06:16:59.2198359Z [36;1m  lld \[0m
+2026-08-13T06:16:59.2198571Z [36;1m  pkg-config \[0m
+2026-08-13T06:16:59.2198847Z [36;1m  protobuf-compiler[0m
+2026-08-13T06:16:59.2199502Z [36;1mtest -f "$PROTOC_INCLUDE/google/protobuf/timestamp.proto"[0m
+2026-08-13T06:16:59.2240549Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-08-13T06:16:59.2240907Z env:
+2026-08-13T06:16:59.2241167Z   QDRANT_VERSION: 1.18.3
+2026-08-13T06:16:59.2241534Z   IMAGE_NAME: local/rag-qdrant
+2026-08-13T06:16:59.2241827Z   IMAGE_TAG: v1.18.3-arm64-64k
+2026-08-13T06:16:59.2242089Z   CARGO_TERM_COLOR: always
+2026-08-13T06:16:59.2243019Z   CARGO_BUILD_JOBS: 2
+2026-08-13T06:16:59.2243326Z   JEMALLOC_SYS_WITH_LG_PAGE: 16
+2026-08-13T06:16:59.2243612Z   PROTOC_INCLUDE: /usr/include
+2026-08-13T06:16:59.2243856Z ##[endgroup]
+2026-08-13T06:16:59.3403615Z Get:1 https://packages.microsoft.com/repos/azure-cli noble InRelease [3564 B]
+2026-08-13T06:16:59.3620567Z Get:2 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-08-13T06:16:59.4564232Z Get:3 https://packages.microsoft.com/repos/azure-cli noble/main arm64 Packages [2457 B]
+2026-08-13T06:16:59.4940283Z Get:4 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.3 kB]
+2026-08-13T06:16:59.4974062Z Get:5 https://packages.microsoft.com/ubuntu/24.04/prod noble/main all Packages [643 B]
+2026-08-13T06:16:59.4996754Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [319 kB]
+2026-08-13T06:16:59.5052316Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [278 kB]
+2026-08-13T06:16:59.7364573Z Hit:8 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+2026-08-13T06:16:59.8058696Z Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+2026-08-13T06:17:00.1059160Z Get:10 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease [126 kB]
+2026-08-13T06:17:00.2484059Z Get:11 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease [126 kB]
+2026-08-13T06:17:00.3937066Z Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1230 kB]
+2026-08-13T06:17:00.7542551Z Get:13 http://ports.ubuntu.com/ubuntu-ports noble-updates/main Translation-en [282 kB]
+2026-08-13T06:17:00.9045724Z Get:14 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Components [178 kB]
+2026-08-13T06:17:00.9839841Z Get:15 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Packages [1716 kB]
+2026-08-13T06:17:01.1509972Z Get:16 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe Translation-en [335 kB]
+2026-08-13T06:17:01.2270249Z Get:17 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Components [387 kB]
+2026-08-13T06:17:01.3039496Z Get:18 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [2122 kB]
+2026-08-13T06:17:01.5548439Z Get:19 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted Translation-en [323 kB]
+2026-08-13T06:17:01.6297285Z Get:20 http://ports.ubuntu.com/ubuntu-ports noble-updates/multiverse arm64 Packages [74.4 kB]
+2026-08-13T06:17:01.7004024Z Get:21 http://ports.ubuntu.com/ubuntu-ports noble-updates/multiverse Translation-en [12.6 kB]
+2026-08-13T06:17:01.8804586Z Get:22 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Components [3564 B]
+2026-08-13T06:17:01.9510180Z Get:23 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [31.2 kB]
+2026-08-13T06:17:02.0211379Z Get:24 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Components [12.6 kB]
+2026-08-13T06:17:02.0909606Z Get:25 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [979 kB]
+2026-08-13T06:17:02.1786404Z Get:26 http://ports.ubuntu.com/ubuntu-ports noble-security/main Translation-en [202 kB]
+2026-08-13T06:17:02.3220851Z Get:27 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Components [43.4 kB]
+2026-08-13T06:17:02.4787970Z Get:28 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1267 kB]
+2026-08-13T06:17:03.0857491Z Get:29 http://ports.ubuntu.com/ubuntu-ports noble-security/universe Translation-en [240 kB]
+2026-08-13T06:17:03.2679649Z Get:30 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Components [76.3 kB]
+2026-08-13T06:17:03.3639963Z Get:31 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted arm64 Packages [2016 kB]
+2026-08-13T06:17:04.0617196Z Get:32 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted Translation-en [304 kB]
+2026-08-13T06:17:04.2167803Z Get:33 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse arm64 Packages [70.3 kB]
+2026-08-13T06:17:04.2975304Z Get:34 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse Translation-en [10.9 kB]
+2026-08-13T06:17:09.8474126Z Fetched 12.9 MB in 5s (2586 kB/s)
+2026-08-13T06:17:10.6425727Z Reading package lists...
+2026-08-13T06:17:10.6716340Z Reading package lists...
+2026-08-13T06:17:10.8717772Z Building dependency tree...
+2026-08-13T06:17:10.8722886Z Reading state information...
+2026-08-13T06:17:11.0924284Z jq is already the newest version (1.7.1-3ubuntu0.24.04.2).
+2026-08-13T06:17:11.0924815Z pkg-config is already the newest version (1.8.1-2build1).
+2026-08-13T06:17:11.0925297Z The following additional packages will be installed:
+2026-08-13T06:17:11.0925780Z   cmake-data libjsoncpp25 liblzma-dev libprotobuf32t64 libprotoc32t64
+2026-08-13T06:17:11.0930049Z   librhash0
+2026-08-13T06:17:11.0938255Z Suggested packages:
+2026-08-13T06:17:11.0938755Z   cmake-doc cmake-format elpa-cmake-mode ninja-build liblzma-doc
+2026-08-13T06:17:11.0939144Z   protobuf-mode-el
+2026-08-13T06:17:11.0939417Z Recommended packages:
+2026-08-13T06:17:11.0939657Z   libprotobuf-dev
+2026-08-13T06:17:11.1300648Z The following NEW packages will be installed:
+2026-08-13T06:17:11.1303739Z   build-essential clang cmake cmake-data libjsoncpp25 liblzma-dev
+2026-08-13T06:17:11.1307538Z   libprotobuf32t64 libprotoc32t64 librhash0 libunwind-dev lld
+2026-08-13T06:17:11.1308592Z   protobuf-compiler
+2026-08-13T06:17:11.5785087Z 0 upgraded, 12 newly installed, 0 to remove and 95 not upgraded.
+2026-08-13T06:17:11.5785881Z Need to get 16.3 MB of archives.
+2026-08-13T06:17:11.5786302Z After this operation, 57.6 MB of additional disk space will be used.
+2026-08-13T06:17:11.5786920Z Get:1 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 build-essential arm64 12.10ubuntu1 [4932 B]
+2026-08-13T06:17:11.6515958Z Get:2 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 clang arm64 1:18.0-59~exp2 [5854 B]
+2026-08-13T06:17:11.7246075Z Get:3 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libjsoncpp25 arm64 1.9.5-6build1 [78.2 kB]
+2026-08-13T06:17:11.9501247Z Get:4 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 librhash0 arm64 1.4.3-3build1 [126 kB]
+2026-08-13T06:17:12.1167843Z Get:5 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 cmake-data all 3.28.3-1build7 [2155 kB]
+2026-08-13T06:17:12.6510252Z Get:6 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 cmake arm64 3.28.3-1build7 [10.3 MB]
+2026-08-13T06:17:13.0549055Z Get:7 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libprotobuf32t64 arm64 3.21.12-8.2ubuntu0.3 [859 kB]
+2026-08-13T06:17:13.1350737Z Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libprotoc32t64 arm64 3.21.12-8.2ubuntu0.3 [637 kB]
+2026-08-13T06:17:13.2858108Z Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 liblzma-dev arm64 5.6.1+really5.4.5-1ubuntu0.3 [178 kB]
+2026-08-13T06:17:13.3598431Z Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libunwind-dev arm64 1.6.2-3build1.1 [1872 kB]
+2026-08-13T06:17:13.4481358Z Get:11 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 lld arm64 1:18.0-59~exp2 [5494 B]
+2026-08-13T06:17:13.5214865Z Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 protobuf-compiler arm64 3.21.12-8.2ubuntu0.3 [28.7 kB]
+2026-08-13T06:17:13.7727605Z Fetched 16.3 MB in 2s (6829 kB/s)
+2026-08-13T06:17:13.8128177Z Selecting previously unselected package build-essential.
+2026-08-13T06:17:13.8781339Z (Reading database ... 
+2026-08-13T06:17:13.8781798Z (Reading database ... 5%
+2026-08-13T06:17:13.8782477Z (Reading database ... 10%
+2026-08-13T06:17:13.8783137Z (Reading database ... 15%
+2026-08-13T06:17:13.8783385Z (Reading database ... 20%
+2026-08-13T06:17:13.8783704Z (Reading database ... 25%
+2026-08-13T06:17:13.8783974Z (Reading database ... 30%
+2026-08-13T06:17:13.8784252Z (Reading database ... 35%
+2026-08-13T06:17:13.8784506Z (Reading database ... 40%
+2026-08-13T06:17:13.8784767Z (Reading database ... 45%
+2026-08-13T06:17:13.8785063Z (Reading database ... 50%
+2026-08-13T06:17:14.0032900Z (Reading database ... 55%
+2026-08-13T06:17:14.2669594Z (Reading database ... 60%
+2026-08-13T06:17:14.4161104Z (Reading database ... 65%
+2026-08-13T06:17:14.5097261Z (Reading database ... 70%
+2026-08-13T06:17:14.6343021Z (Reading database ... 75%
+2026-08-13T06:17:15.0350077Z (Reading database ... 80%
+2026-08-13T06:17:15.4780854Z (Reading database ... 85%
+2026-08-13T06:17:15.9538466Z (Reading database ... 90%
+2026-08-13T06:17:16.4375353Z (Reading database ... 95%
+2026-08-13T06:17:16.4375729Z (Reading database ... 100%
+2026-08-13T06:17:16.4376070Z (Reading database ... 199905 files and directories currently installed.)
+2026-08-13T06:17:16.4418138Z Preparing to unpack .../00-build-essential_12.10ubuntu1_arm64.deb ...
+2026-08-13T06:17:16.4446766Z Unpacking build-essential (12.10ubuntu1) ...
+2026-08-13T06:17:16.4663641Z Selecting previously unselected package clang.
+2026-08-13T06:17:16.4810763Z Preparing to unpack .../01-clang_1%3a18.0-59~exp2_arm64.deb ...
+2026-08-13T06:17:16.4822811Z Unpacking clang (1:18.0-59~exp2) ...
+2026-08-13T06:17:16.5349743Z Selecting previously unselected package libjsoncpp25:arm64.
+2026-08-13T06:17:16.5508890Z Preparing to unpack .../02-libjsoncpp25_1.9.5-6build1_arm64.deb ...
+2026-08-13T06:17:16.5533257Z Unpacking libjsoncpp25:arm64 (1.9.5-6build1) ...
+2026-08-13T06:17:16.5756283Z Selecting previously unselected package librhash0:arm64.
+2026-08-13T06:17:16.5926254Z Preparing to unpack .../03-librhash0_1.4.3-3build1_arm64.deb ...
+2026-08-13T06:17:16.5937318Z Unpacking librhash0:arm64 (1.4.3-3build1) ...
+2026-08-13T06:17:16.6162047Z Selecting previously unselected package cmake-data.
+2026-08-13T06:17:16.6341490Z Preparing to unpack .../04-cmake-data_3.28.3-1build7_all.deb ...
+2026-08-13T06:17:16.6408146Z Unpacking cmake-data (3.28.3-1build7) ...
+2026-08-13T06:17:17.0398911Z Selecting previously unselected package cmake.
+2026-08-13T06:17:17.0564185Z Preparing to unpack .../05-cmake_3.28.3-1build7_arm64.deb ...
+2026-08-13T06:17:17.0576212Z Unpacking cmake (3.28.3-1build7) ...
+2026-08-13T06:17:17.2287901Z Selecting previously unselected package libprotobuf32t64:arm64.
+2026-08-13T06:17:17.2470016Z Preparing to unpack .../06-libprotobuf32t64_3.21.12-8.2ubuntu0.3_arm64.deb ...
+2026-08-13T06:17:17.2483522Z Unpacking libprotobuf32t64:arm64 (3.21.12-8.2ubuntu0.3) ...
+2026-08-13T06:17:17.2834743Z Selecting previously unselected package libprotoc32t64:arm64.
+2026-08-13T06:17:17.3001919Z Preparing to unpack .../07-libprotoc32t64_3.21.12-8.2ubuntu0.3_arm64.deb ...
+2026-08-13T06:17:17.3014176Z Unpacking libprotoc32t64:arm64 (3.21.12-8.2ubuntu0.3) ...
+2026-08-13T06:17:17.3280359Z Selecting previously unselected package liblzma-dev:arm64.
+2026-08-13T06:17:17.3440712Z Preparing to unpack .../08-liblzma-dev_5.6.1+really5.4.5-1ubuntu0.3_arm64.deb ...
+2026-08-13T06:17:17.3452273Z Unpacking liblzma-dev:arm64 (5.6.1+really5.4.5-1ubuntu0.3) ...
+2026-08-13T06:17:17.3725749Z Selecting previously unselected package libunwind-dev:arm64.
+2026-08-13T06:17:17.3884520Z Preparing to unpack .../09-libunwind-dev_1.6.2-3build1.1_arm64.deb ...
+2026-08-13T06:17:17.3897223Z Unpacking libunwind-dev:arm64 (1.6.2-3build1.1) ...
+2026-08-13T06:17:17.4409194Z Selecting previously unselected package lld:arm64.
+2026-08-13T06:17:17.4563409Z Preparing to unpack .../10-lld_1%3a18.0-59~exp2_arm64.deb ...
+2026-08-13T06:17:17.4574814Z Unpacking lld:arm64 (1:18.0-59~exp2) ...
+2026-08-13T06:17:17.4821807Z Selecting previously unselected package protobuf-compiler.
+2026-08-13T06:17:17.4976165Z Preparing to unpack .../11-protobuf-compiler_3.21.12-8.2ubuntu0.3_arm64.deb ...
+2026-08-13T06:17:17.4987736Z Unpacking protobuf-compiler (3.21.12-8.2ubuntu0.3) ...
+2026-08-13T06:17:17.5407770Z Setting up libprotobuf32t64:arm64 (3.21.12-8.2ubuntu0.3) ...
+2026-08-13T06:17:17.5437106Z Setting up lld:arm64 (1:18.0-59~exp2) ...
+2026-08-13T06:17:17.5461708Z Setting up clang (1:18.0-59~exp2) ...
+2026-08-13T06:17:17.5652812Z Setting up libjsoncpp25:arm64 (1.9.5-6build1) ...
+2026-08-13T06:17:17.5681851Z Setting up liblzma-dev:arm64 (5.6.1+really5.4.5-1ubuntu0.3) ...
+2026-08-13T06:17:17.5708633Z Setting up librhash0:arm64 (1.4.3-3build1) ...
+2026-08-13T06:17:17.5735192Z Setting up build-essential (12.10ubuntu1) ...
+2026-08-13T06:17:17.5761232Z Setting up cmake-data (3.28.3-1build7) ...
+2026-08-13T06:17:17.5828623Z Setting up libprotoc32t64:arm64 (3.21.12-8.2ubuntu0.3) ...
+2026-08-13T06:17:17.5851820Z Setting up libunwind-dev:arm64 (1.6.2-3build1.1) ...
+2026-08-13T06:17:17.5882950Z Setting up protobuf-compiler (3.21.12-8.2ubuntu0.3) ...
+2026-08-13T06:17:17.5908904Z Setting up cmake (3.28.3-1build7) ...
+2026-08-13T06:17:17.5942807Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-08-13T06:17:17.6023457Z Not building database; man-db/auto-update is not 'true'.
+2026-08-13T06:17:17.6044277Z Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+2026-08-13T06:17:20.2826320Z 
+2026-08-13T06:17:20.2827288Z Running kernel seems to be up-to-date.
+2026-08-13T06:17:20.2827604Z 
+2026-08-13T06:17:20.2827972Z No services need to be restarted.
+2026-08-13T06:17:20.2828156Z 
+2026-08-13T06:17:20.2828368Z No containers need to be restarted.
+2026-08-13T06:17:20.2828544Z 
+2026-08-13T06:17:20.2828676Z No user sessions are running outdated binaries.
+2026-08-13T06:17:20.2828922Z 
+2026-08-13T06:17:20.2829138Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-08-13T06:17:21.3094317Z ##[error]Process completed with exit code 1.
+2026-08-13T06:17:21.3282880Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-13T06:17:21.3284263Z Post job cleanup.
+2026-08-13T06:17:21.3990111Z [command]/usr/bin/git version
+2026-08-13T06:17:21.4025980Z git version 2.54.0
+2026-08-13T06:17:21.4060458Z Temporarily overriding HOME='/home/runner/work/_temp/8b711654-6617-423f-8b83-87f725ede9c1' before making global git config changes
+2026-08-13T06:17:21.4061521Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-13T06:17:21.4066136Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/test/test/qdrant-src
+2026-08-13T06:17:21.4100840Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-13T06:17:21.4131396Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-13T06:17:21.4331656Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-13T06:17:21.4354335Z http.https://github.com/.extraheader
+2026-08-13T06:17:21.4363977Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-08-13T06:17:21.4399070Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-13T06:17:21.4599064Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-13T06:17:21.4626843Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-13T06:17:21.4982983Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-13T06:17:21.4984570Z Post job cleanup.
+2026-08-13T06:17:21.5714814Z [command]/usr/bin/git version
+2026-08-13T06:17:21.5745754Z git version 2.54.0
+2026-08-13T06:17:21.5788877Z Temporarily overriding HOME='/home/runner/work/_temp/79ea8793-eb90-4329-8b61-ad6b3ac0492d' before making global git config changes
+2026-08-13T06:17:21.5789887Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-13T06:17:21.5794132Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/test/test
+2026-08-13T06:17:21.5840979Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-13T06:17:21.5874084Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-13T06:17:21.6061098Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-13T06:17:21.6083290Z http.https://github.com/.extraheader
+2026-08-13T06:17:21.6095388Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-08-13T06:17:21.6129330Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-13T06:17:21.6326256Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-13T06:17:21.6359642Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-13T06:17:21.6671953Z Cleaning up orphan processes
+2026-08-13T06:17:21.7001339Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
