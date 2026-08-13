@@ -17,6 +17,7 @@ env:
   CARGO_TERM_COLOR: always
   CARGO_BUILD_JOBS: "2"
   JEMALLOC_SYS_WITH_LG_PAGE: "16"
+  PROTOC_INCLUDE: "/usr/include"
 
 jobs:
   build:
@@ -61,6 +62,7 @@ jobs:
             lld \
             pkg-config \
             protobuf-compiler
+          test -f "$PROTOC_INCLUDE/google/protobuf/timestamp.proto"
 
       - name: Install Rust nightly for Qdrant unstable APIs
         uses: dtolnay/rust-toolchain@nightly
