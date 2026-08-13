@@ -62,10 +62,24 @@ jobs:
             pkg-config \
             protobuf-compiler
 
-      - name: Install the Qdrant-pinned Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+      - name: Install Rust nightly for Qdrant unstable APIs
+        uses: dtolnay/rust-toolchain@nightly
         with:
-          toolchain: "1.94.0"
+          toolchain: "nightly"
+
+      - name: Enable nightly features used by Qdrant v1.18.3
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("qdrant-src/lib/common/common/src/lib.rs")
+          text = path.read_text()
+          feature_lines = "#![feature(cfg_select)]\n#![feature(ptr_as_ref_unchecked)]\n"
+          if not text.startswith("#![feature(cfg_select)]"):
+              path.write_text(feature_lines + text)
+          PY
 
       - name: Build Qdrant with 64K allocator pages
         shell: bash
